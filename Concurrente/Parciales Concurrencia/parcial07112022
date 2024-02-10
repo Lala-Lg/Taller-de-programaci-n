@@ -1,0 +1,125 @@
+programa parcial07112022
+procesos
+  proceso todasLasFlores(ES f:numero)
+  comenzar
+    mientras(HayFlorEnLaEsquina)
+      tomarFlor
+      f:=f+1
+  fin
+  proceso dejarFlor
+  comenzar
+    si(HayFlorEnLaBolsa)
+      depositarFlor
+  fin
+  proceso lado(ES f:numero)
+  comenzar
+    repetir 5
+      todasLasFlores(f)
+      mover
+    derecha
+  fin
+  proceso bloquear1010(E id:numero)
+  comenzar
+    mientras (HayFlorEnLaBolsa)
+      BloquearEsquina(10,10)
+      Pos(10,10)
+      dejarFlor
+      si(id = 1)
+        Pos(1,1)
+      sino
+        si (id = 2)
+          Pos(7,1)
+        sino
+          Pos(13,1)
+      LiberarEsquina(10,10)
+  fin
+areas
+  cuadrado1: AreaP(1,1,6,6)
+  cuadrado2: AreaP(7,1,12,6)
+  cuadrado3: AreaP(13,1,18,6)
+  inicioJefe: AreaP(20,1,20,1)
+  perdedores: AreaPC(10,10,10,10)
+robots
+  robot trabajador
+  variables
+    id,f:numero
+    seguir:boolean
+    perdi:boolean
+  comenzar
+    f:= 0
+    RecibirMensaje(id,jefe)
+    repetir 4
+      lado(f)
+      EnviarMensaje(V,jefe)
+      RecibirMensaje(seguir,jefe)
+    EnviarMensaje(id,jefe)
+    EnviarMensaje(f,jefe)
+    RecibirMensaje(perdi,jefe)
+    si (perdi)
+      bloquear1010(id)
+  fin
+  robot coordinador 
+  variables 
+    f:numero
+    listo:boolean
+    id:numero
+    idMax:numero
+    max:numero
+  comenzar
+    max:= -1
+    idMax:=0
+    EnviarMensaje(1,r1)
+    EnviarMensaje(2,r2)
+    EnviarMensaje(3,r3)
+    repetir 4
+      repetir 3
+        RecibirMensaje(listo,*)
+      EnviarMensaje(listo,r1)
+      EnviarMensaje(listo,r2)
+      EnviarMensaje(listo,r3)
+    repetir 3
+      RecibirMensaje(id,*)
+      si (id = 1)
+        RecibirMensaje(f,r1)
+      sino
+        si (id = 2)
+          RecibirMensaje(f,r2)
+        sino
+          RecibirMensaje(f,r3)
+      si(f > max)
+        idMax:= id
+        max:= f
+    si (idMax = 1)
+      EnviarMensaje(F,r1)
+      EnviarMensaje(V,r2)
+      EnviarMensaje(V,r3)
+    sino
+      si(idMax = 2)
+        EnviarMensaje(F,r2)
+        EnviarMensaje(V,r1)
+        EnviarMensaje(V,r2)
+      sino
+        EnviarMensaje(F,r3)
+        EnviarMensaje(V,r1)
+        EnviarMensaje(V,r2)
+    Informar('El_ganador_fue_',idMax)
+    Informar('Junto_la_cantidad_de_flores_de',max)
+  fin
+variables
+  r1:trabajador
+  r2:trabajador
+  r3:trabajador
+  jefe:coordinador
+comenzar
+  AsignarArea(r1,cuadrado1)
+  AsignarArea(r2,cuadrado2)
+  AsignarArea(r3,cuadrado3)
+  AsignarArea(jefe,inicioJefe)
+  AsignarArea(r1,perdedores)
+  AsignarArea(r2,perdedores)
+  AsignarArea(r3,perdedores)
+  Iniciar(r1,1,1)
+  Iniciar(r2,7,1)
+  Iniciar(r3,13,1)
+  Iniciar(jefe,20,1)
+fin
