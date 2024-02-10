@@ -1,0 +1,103 @@
+programa practica3_ejercicio3
+procesos
+  proceso agarrarFlor(ES flores:numero)
+  comenzar
+    tomarFlor
+    flores:=flores+1
+  fin
+  proceso esquinaRandom(E av:numero;E ca:numero; E avInicio:numero; E caInicio:numero;ES flores:numero;ES hayFlores:boolean)
+  comenzar
+    BloquearEsquina(av,ca)
+    Pos(av,ca)
+    si(HayFlorEnLaEsquina)
+      agarrarFlor(flores)
+    sino
+      hayFlores:=F
+    Pos(avInicio,caInicio)
+    LiberarEsquina(av,ca)
+  fin
+areas
+  cuadrante: AreaPC(2,2,10,10)
+  iniciarJefe: AreaP(1,1,1,1)
+  iniciarR1: AreaP(2,1,2,1)
+  iniciarR2: AreaP(3,1,3,1)
+  iniciarR3: AreaP(4,1,4,1)
+  iniciarR4: AreaP(5,1,5,1)
+robots
+  robot florero
+  variables
+    id,flores,av,ca,avInicio,caInicio:numero
+    hayFlores:boolean
+  comenzar
+    hayFlores:=V
+    flores:=0
+    RecibirMensaje(id,jefe)
+    RecibirMensaje(av,jefe)
+    RecibirMensaje(ca,jefe)
+    avInicio:=PosAv
+    caInicio:=PosCa
+    mientras (hayFlores)
+      esquinaRandom(av,ca,avInicio,caInicio,flores,hayFlores)
+    EnviarMensaje(id,jefe)
+    EnviarMensaje(flores,jefe)
+  fin
+  robot robotJefe
+  variables
+    id,flores,idMax,Max,av,ca:numero
+  comenzar
+    Max:=-1
+    idMax:=0
+    Random(av,2,10)
+    Random(ca,2,10)
+    EnviarMensaje(1,r1)
+    EnviarMensaje(av,r1)
+    EnviarMensaje(ca,r1)
+    EnviarMensaje(2,r2)
+    EnviarMensaje(av,r2)
+    EnviarMensaje(ca,r2)
+    EnviarMensaje(3,r3)
+    EnviarMensaje(av,r3)
+    EnviarMensaje(ca,r3)
+    EnviarMensaje(4,r4)
+    EnviarMensaje(av,r4)
+    EnviarMensaje(ca,r4)
+    repetir 4
+      RecibirMensaje(id,*)
+      si (id = 1)
+        RecibirMensaje(flores,r1)
+      sino
+        si (id = 2)
+          RecibirMensaje(flores,r2)
+        sino
+          si (id = 3)
+            RecibirMensaje(flores,r3)
+          sino
+            RecibirMensaje(flores,r4)
+      si(Max < flores)
+        Max:=flores
+        idMax:=id
+    Informar('Ganador_',idMax)
+    Informar('Mas_flores_recolectadas_',Max)
+  fin
+variables
+  r1:florero
+  r2:florero
+  r3:florero
+  r4:florero
+  jefe:robotJefe
+comenzar
+  AsignarArea(jefe,iniciarJefe)
+  AsignarArea(r1,cuadrante)
+  AsignarArea(r2,cuadrante)
+  AsignarArea(r3,cuadrante)
+  AsignarArea(r4,cuadrante)
+  AsignarArea(r1,iniciarR1)
+  AsignarArea(r2,iniciarR2)
+  AsignarArea(r3,iniciarR3)
+  AsignarArea(r4,iniciarR4)
+  Iniciar(r1,2,1)
+  Iniciar(r2,3,1)
+  Iniciar(r3,4,1)
+  Iniciar(r4,5,1)
+  Iniciar(jefe,1,1)
+fin

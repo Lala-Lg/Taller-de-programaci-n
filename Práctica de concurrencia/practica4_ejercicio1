@@ -1,0 +1,121 @@
+programa Ejercicio1
+procesos
+  proceso cargarFlores
+  comenzar
+    mover
+    mientras(HayFlorEnLaEsquina)
+      tomarFlor
+  fin
+  proceso depositar
+  comenzar
+    mientras(HayFlorEnLaBolsa)
+      depositarFlor
+      si (HayFlorEnLaBolsa)
+        mover
+  fin
+  proceso entregarFlores (E av:numero E ca:numero E pedido:numero)
+  comenzar
+    BloquearEsquina(av,(ca + 1))
+    Pos(av,(ca + 1 ))
+    repetir pedido
+      depositarFlor
+    Pos(100,100)
+    LiberarEsquina(av,(ca + 1))    
+  fin
+areas
+  areaCliente1:AreaPC(1,1,1,100)
+  areaCliente2:AreaPC(2,1,2,100)
+  areaCliente3:AreaPC(3,1,3,100)
+  origenServidor:AreaP(100,100,100,100)
+
+robots
+  robot cliente
+  variables
+    id,pedido,calleActual:numero
+    ACK:boolean
+  comenzar
+    RecibirMensaje(id, servidor)
+    mientras(PosCa<100)
+      Random(pedido, 1,4)
+      calleActual:=PosCa
+      EnviarMensaje(id, servidor)
+      EnviarMensaje(calleActual,servidor)
+      EnviarMensaje(pedido, servidor)
+      RecibirMensaje(ACK, servidor)
+      cargarFlores
+      depositarFlor
+      depositar
+    EnviarMensaje(id,servidor)
+    EnviarMensaje(pedido,servidor)
+    RecibirMensaje(ACK,servidor)
+    cargarFlores
+    mientras(HayFlorEnLaBolsa)
+      depositarFlor
+  fin
+  
+  robot servidorr
+  variables
+    av,calleActual,pedido:numero
+  comenzar
+    calleActual:=0
+    EnviarMensaje(1, cliente1)
+    EnviarMensaje(2, cliente2)
+    EnviarMensaje(3, cliente3)
+    mientras(calleActual<99)
+      RecibirMensaje(av, *)
+      si(av=1)
+        RecibirMensaje(calleActual, cliente1)
+        si(calleActual<99)
+          RecibirMensaje(pedido, cliente1)
+          entregarFlores(av,calleActual,pedido)
+          EnviarMensaje(V, cliente1)
+      si(av=2)
+        RecibirMensaje(calleActual, cliente2)
+        si(calleActual<99)
+          RecibirMensaje(pedido, cliente2)
+          entregarFlores(av,calleActual,pedido)
+          EnviarMensaje(V, cliente2)
+      si(av=3)
+        RecibirMensaje(calleActual, cliente3)       
+        si(calleActual<99)
+          RecibirMensaje(pedido, cliente3)
+          entregarFlores(av,calleActual,pedido)
+          EnviarMensaje(V, cliente3)  
+    RecibirMensaje(av,*)
+    si(av=1)
+      RecibirMensaje(calleActual, cliente1)
+      si(calleActual<99)
+        RecibirMensaje(pedido, cliente1)
+        entregarFlores(av,calleActual,pedido)
+        EnviarMensaje(V, cliente1)
+      si(av=2)
+        RecibirMensaje(calleActual, cliente2)
+        si(calleActual<99)
+          RecibirMensaje(pedido, cliente2)
+          entregarFlores(av,calleActual,pedido)
+          EnviarMensaje(V, cliente2)
+      si(av=3)
+        RecibirMensaje(calleActual, cliente3)       
+        si(calleActual<99)
+          RecibirMensaje(pedido, cliente3)
+          entregarFlores(av,calleActual,pedido)
+          EnviarMensaje(V, cliente3) 
+  fin
+variables
+  cliente1:cliente
+  cliente2:cliente
+  cliente3:cliente
+  servidor:servidorr
+comenzar
+  AsignarArea(cliente1, areaCliente1)
+  AsignarArea(cliente2, areaCliente2)
+  AsignarArea(cliente3, areaCliente3)
+  AsignarArea(servidor, areaCliente1)
+  AsignarArea(servidor, areaCliente2)
+  AsignarArea(servidor, areaCliente3)
+  AsignarArea(servidor, origenServidor)
+  Iniciar(cliente1, 1,1)
+  Iniciar(cliente2, 2,1)
+  Iniciar(cliente3, 3,1)
+  Iniciar(servidor, 100,100)
+fin      

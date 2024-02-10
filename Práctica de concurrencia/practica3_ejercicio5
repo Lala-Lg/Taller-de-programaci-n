@@ -1,0 +1,89 @@
+programa practica3_ejercicio5
+procesos
+  proceso juntarPapeles(E hayPapel:boolean)
+  comenzar
+    si (HayPapelEnLaEsquina)
+      hayPapel:=V
+      tomarPapel
+    sino
+      hayPapel:=F
+  fin
+  proceso avanzar
+  variables
+    hayPapel:boolean
+    av,ca:numero
+  comenzar
+    av:=PosAv
+    ca:=PosCa
+    hayPapel:=V
+    si((hayPapel)&(av < 100))
+      BloquearEsquina(11,11)
+      Pos(11,11)
+      juntarPapeles(hayPapel)
+      Pos(av,ca)
+      LiberarEsquina(11,11)
+      si(HayPapelEnLaBolsa)
+        depositarPapel
+      mover
+    sino
+      EnviarMensaje(V,jefe)
+      EnviarMensaje(ca,jefe)
+  fin
+areas
+  avenida1: AreaP(4,1,4,100)
+  avenida2: AreaP(6,1,6,100)
+  avenida3: AreaP(8,1,8,100)
+  avenida4: AreaP(10,1,10,100)
+  fuente: AreaPC(11,11,11,11)
+  iniciojefe: AreaP(1,1,1,1)
+robots
+  robot corredor
+  variables
+    id:numero
+  comenzar
+    RecibirMensaje(id,jefe)
+    avanzar
+    EnviarMensaje(id,jefe)
+  fin
+  robot coordinador
+  variables
+    id,ca,max,ganador:numero
+    listo:boolean
+  comenzar
+    max:=-1
+    ganador:=0
+    EnviarMensaje(1,r1)
+    EnviarMensaje(2,r2)
+    EnviarMensaje(3,r3)
+    EnviarMensaje(4,r4)
+    repetir 4
+      RecibirMensaje(listo,*)
+      RecibirMensaje(ca,*)
+      RecibirMensaje(id,*)
+      si(ca>max)
+        max:=ca
+        ganador:=id
+    Informar('El_ganador_fue_',ganador)
+  fin
+variables
+  r1:corredor
+  r2:corredor
+  r3:corredor
+  r4:corredor
+  jefe:coordinador
+comenzar
+  AsignarArea(r1,avenida1)
+  AsignarArea(r2,avenida2)
+  AsignarArea(r3,avenida3)
+  AsignarArea(r4,avenida4)
+  AsignarArea(r1,fuente)
+  AsignarArea(r2,fuente)
+  AsignarArea(r3,fuente)
+  AsignarArea(r4,fuente)
+  AsignarArea(jefe,iniciojefe)
+  Iniciar(jefe,1,1)
+  Iniciar(r1,4,1)
+  Iniciar(r2,6,1)
+  Iniciar(r3,8,1)
+  Iniciar(r4,10,1)
+fin
