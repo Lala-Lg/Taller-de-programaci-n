@@ -1,0 +1,10 @@
+function numRandom():integer;
+ begin
+   numRandom:=random(100);//Puede salir un valor entre en el numero 0 y 99
+ end;
+  
+ //Programa principal
+ Begin
+ Randomize;
+ writeln('El numero aleatorio generado es: ', numRandom());
+ End.

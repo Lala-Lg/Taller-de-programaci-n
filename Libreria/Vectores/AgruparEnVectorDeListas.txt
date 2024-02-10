@@ -1,0 +1,19 @@
+Procedure agruparCodigoGenero(var g: vector_genero);
+
+var p:pelicula; ult:lista; i:integer;
+
+begin
+ 
+  inicializarVectorGenero(g);
+   
+    leerPelicula(p); 
+  
+    while(p.cod_pelicula <> -1) do begin 
+  
+      agregarAlFinal(g[p.cod_genero],ult,p);
+  
+      leerPelicula(p);
+  
+    end;
+
+end;

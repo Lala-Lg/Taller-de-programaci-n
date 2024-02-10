@@ -1,0 +1,62 @@
+procedure insertarOrdenado (var l:Lista;v:venta);
+var aux:lista;ant:lista;act:lista;
+begin
+   new(aux);
+   aux^.dato:=v;
+   act:=l;
+   ant:=l;
+   while (act<>nil) and (act^.dato.cod_producto<aux^.dato.cod_producto) do begin
+    ant:=act;
+    act:=act^.sig;
+   end;
+   if (act=l) then l:=aux
+   else ant^.sig:=aux;
+   aux^.sig:=act;
+ end;
+
+procedure porCodigoProducto( VAR s:sucursales; VAR min:venta);
+var indiceMin,i:integer;
+begin
+
+ min.cod_producto:= 999;
+ 
+ for i:=1 to dimf do begin
+  
+   if(s[i] <> nil) and (s[i]^.dato.cod_producto<min.cod_producto) then begin
+   
+     min:=s[i]^.dato;
+     indiceMin:=i;
+   
+   end;
+  
+ end;
+ 
+ if (min.cod_producto<>999) then s[indiceMin]:=s[indiceMin]^.sig;
+
+end;
+
+procedure mergeAcumulador( VAR Nue:nuevaLista;s:sucursales);
+var min:venta; totalVentas:integer; actual:integer; ult:nuevaLista; r:nuevoRegistro;
+begin
+  
+  Nue:=nil; ult:=nil;
+  
+  porCodigoProducto(s,min);
+  
+  while (min.cod_producto<>999) do begin 
+      
+      actual:= min.cod_producto; totalVentas:= 0;
+      
+   while (min.cod_producto<>999) and (min.cod_producto = actual) do begin
+   
+      totalVentas:= totalVentas+min.cant_vendida;
+      
+      porCodigoProducto(s,min);
+    
+   end;
+    
+    r.codigo_producto:= actual;
+    r.cantTotal_vendida:= totalVentas;
+    agregarAdelante(Nue,ult,r);
+  
+  end;

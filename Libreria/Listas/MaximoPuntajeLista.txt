@@ -1,0 +1,18 @@
+Procedure maximoPuntaje (var max:real; var indice:integer; l:lista);
+
+begin
+  
+  max:=-1;
+   
+   while (l<>nil) do begin
+     
+     if(max<l^.dato.puntaje_promedio) then begin
+        max:=l^.dato.puntaje_promedio;
+        indice:=l^.dato.cod_pelicula;
+     end;
+     
+     l:=l^.sig; 
+     
+   end;
+
+end;

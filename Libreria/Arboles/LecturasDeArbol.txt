@@ -1,0 +1,17 @@
+Procedure OrdenCreciente (a:arbol);
+  begin
+   If ( a<> nil ) then begin
+    OrdenCreciente (a^.HI);
+    write (a^.dato, ' ');
+    OrdenCreciente (a^.HD);
+   end;
+end;
+
+Procedure OrdenDecreciente (a:arbol);
+  begin
+   If ( a<> nil ) then begin
+    OrdenDecreciente (a^.HD);
+    write (a^.dato, ' ');
+    OrdenDecreciente (a^.HI);
+   end;
+end;

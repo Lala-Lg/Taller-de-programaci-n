@@ -1,0 +1,8 @@
+procedure aumentarEdad(a:arbol);
+begin
+  if (a <> nil) then begin
+    a^.dato.edad:=a^.dato.edad+1;
+    aumentarEdad(a^.HI);
+    aumentarEdad(a^.HD);
+  end;
+end;

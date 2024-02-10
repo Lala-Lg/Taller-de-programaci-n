@@ -1,0 +1,5 @@
+function calcularPotencia (x, n: real): real;   {Calcula el resultado de x elevado a la n, o x^n}
+begin
+  if (n = 0) then potencia:= 1
+  else potencia := x * potencia(x, n-1);
+end;

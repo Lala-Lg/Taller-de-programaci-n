@@ -1,0 +1,16 @@
+Procedure mayoresPuntajes(var vp:vector_puntaje; vg:vector_genero);
+
+var i:integer; max:real; indice:integer;
+
+begin
+
+ for i:=1 to 8 do begin
+ 
+  maximoPuntaje(max,indice,vg[i]);
+  
+  vp[i].cod_pelicula:= indice;
+  vp[i].mayor_puntaje:= max;
+ 
+ end;
+
+end;

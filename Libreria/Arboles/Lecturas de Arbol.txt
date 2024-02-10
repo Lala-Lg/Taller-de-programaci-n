@@ -1,0 +1,36 @@
+procedure ordenDecreciente (a:arbol);
+  begin
+   if ( a<> nil ) then begin
+    ordenCreciente (a^.HD);
+    write (a^.dato, ' ');
+    ordenCreciente (a^.HI);
+   end;
+end;
+
+procedure ordenCreciente (a:arbol); EN ORDEN
+  begin
+   if ( a<> nil ) then begin
+    ordenDecreciente (a^.HI);
+    write (a^.dato, ' ');
+    ordenDecreciente (a^.HD);
+   end;
+end;
+
+
+procedure PreOrden (a:arbol);
+  begin
+   if ( a<> nil ) then begin
+    write (a^.dato, ' ');
+    PreOrden (a^.HI);
+    PreOrden (a^.HD);
+   end;
+end;
+
+procedure PosOrden (a:arbol);
+  begin
+   if ( a<> nil ) then begin
+    PosOrden  (a^.HI);
+     PosOrden  (a^.HD);
+    write (a^.dato, ' ');
+   end;
+end;

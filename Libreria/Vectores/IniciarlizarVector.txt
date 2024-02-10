@@ -1,0 +1,13 @@
+Procedure inicializarVectorGenero(var g: vector_genero);
+
+var i:integer;
+
+begin
+  
+   for i:=1 to 8 do begin
+     
+     g[i]:=nil;
+   
+   end;
+   
+end;

@@ -1,0 +1,36 @@
+procedure siguientePelicula( VAR v:vector; VAR p:pelicula);
+var generoMinimo,i:integer;
+begin
+
+  p.cod_pelicula:=999;
+  for i:=1 to 8 do begin
+  
+    if (v[i]<>nil) AND (v[i]^.dato.cod_pelicula<p.cod_pelicula) then begin
+      
+      generoMinimo:=i;
+      p:=v[i]^.dato;
+    
+    end;
+  
+  end;
+  
+  if (p.cod_pelicula<>999) then v[generoMinimo]:=v[generoMinimo]^.sig;
+ 
+end;
+
+//En el merge lo unico que será por referencia es el parametro de la LISTA NUEVA
+procedure mergePeliculas ( VAR NueL:listaUnica; v:vector);
+var p:pelicula;ult:listaUnica;
+begin
+  
+  NueL:=nil;
+  siguientePelicula(v,p);
+  while(p.cod_pelicula<>999)do begin
+  
+   agregarAdelante(NueL,ult,p);
+   
+   SiguientePelicula(v,p);
+   
+  end;
+  
+end;

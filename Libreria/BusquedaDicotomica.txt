@@ -1,0 +1,21 @@
+procedure busquedaDicotomica (v:vector; inicio,fin:integer; dato:integer; var pos: integer);
+var
+  medio:integer;
+begin
+  if (inicio>fin)then
+    pos:=-1
+  else
+    begin
+      medio:=(inicio+fin)div 2;
+      if (dato= v[medio])then
+        pos:=medio
+      else
+       begin
+        if (dato<v[medio])then
+          busquedaDicotomica(v,inicio,medio-1,dato,pos)
+        else
+          busquedaDicotomica(v,medio+1,fin,dato,pos);
+       end;
+         
+    end;
+end;

@@ -1,0 +1,19 @@
+Ordenadamente
+
+Procedure AgregarAlFinal2(Var p:lista; t:tipo);
+
+var aux;act:lista;
+
+begin
+  
+  new(aux);
+  aux^.dato:=t;
+  aux^.sig:=nil;
+  
+  if(p=nil) then p:=aux;
+  else begin
+       act:=p;
+       while(act^.sig<>nil) do act:=act^.sig;
+       act^.sig:=aux;
+  end;
+end;

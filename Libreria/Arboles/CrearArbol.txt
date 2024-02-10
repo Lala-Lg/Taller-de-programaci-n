@@ -1,0 +1,16 @@
+procedure crearArbol (var a:arbol);
+var num:integer;
+begin
+  
+  writeln('Ingrese numero');
+  readln(num);
+  
+  while (num<>0) do begin
+
+   insertarHoja(a,num);
+   writeln('Ingrese numero');
+   readln(num);
+  
+  end;
+
+end;

@@ -1,0 +1,11 @@
+procedure buscarMayorEdad(a:arbol; var max:integer; var numSocio:integer);
+begin
+ if (a <> nil) then begin
+    if(a^.dato.edad> max) then begin
+               max:=a^.dato.edad;
+               numSocio:=a^.dato.numSocio;
+    end;
+ buscarMayorEdad(a^.HI,max,numSocio);
+ buscarMayorEdad(a^.HD,max,numSocio);
+ end;
+end;

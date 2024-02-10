@@ -1,0 +1,15 @@
+Procedure ordenarPorInsercion (var v: vector_oficinas; diml: integer);
+var 
+  i,j:integer; 
+  actual:oficina;
+begin
+  for i:=2 to diml do begin
+     actual:= v[i]; 
+     j:= i-1;  
+     while (j > 0) and (v[j].cod_id > actual.cod_id) do begin
+        v[j+1]:= v[j];
+        j:= j- 1;
+     end;
+     v[j+1]:=actual;
+   end;
+end;

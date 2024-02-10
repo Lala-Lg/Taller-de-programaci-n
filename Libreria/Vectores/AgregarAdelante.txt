@@ -1,0 +1,8 @@
+procedure agregarAdelante(var l:Lista;num:integer);
+var aux:lista;
+Begin
+ new(aux); 
+ aux^.dato:=num;
+ aux^.sig:=l;
+ l:=aux;
+end;

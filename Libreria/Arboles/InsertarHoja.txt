@@ -1,0 +1,19 @@
+procedure insertarHoja(Var a:arbol;dato:integer);
+Begin 
+   If (a=nil) then begin
+    new(a);
+    a^.dato:=dato;
+    a^.HI:=nil;
+    a^.HD:=nil;
+    end
+    else begin If (dato<a^.dato) then begin 
+               writeln('Entre al HI');//Solo para ver como funciona y ver con ejemplos.
+               insertarHoja(a^.HI,dato);
+               writeln('Sali del HI'); end
+               else If (dato>a^.dato) then begin
+                    writeln('Entre al HD');
+                    insertarHoja(a^.HD,dato);
+                    writeln('Sali del HD');
+                    end;
+          end;
+end;

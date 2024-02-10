@@ -1,0 +1,16 @@
+
+Procedure insertarOrdenado (Var l:lista;p:producto);
+Var aux:Lista;ant:lista;act:Lista;
+Begin
+   new(aux);
+   aux^.dato:=p;
+   act:=l;
+   ant:=l;
+   While (act<>nil) and (act^.dato.cod_producto<aux^.dato.cod_producto) do begin
+    ant:=act;
+    act:=act^.sig;
+    end;
+   if (act=l) then l:=aux
+   else ant^.sig:=aux;
+   aux^.sig:=act;
+ end;

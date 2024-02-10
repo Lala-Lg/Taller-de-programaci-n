@@ -1,0 +1,35 @@
+procedure minimo(var v: vector_listas; var min: gasto); 
+var
+  i, indiceMin: integer;
+begin
+  min.nombre:= 'ZZZ';
+  for i:= 1 to CANTI do begin 
+     if (v[i] <> nil) and (v[i]^.dato.nombre < min.nombre) then begin 
+  	    min:=v[i]^.dato;
+        indiceMin:=i;
+     end;
+  end;
+  if (min.nombre <> 'ZZZ') then 
+     v[indiceMin]:=v[indiceMin]^.sig;
+end;
+
+
+ 
+ Procedure merge (v: vector_listas; var Enuevo:lista);
+ Var min:gasto ; ult:lista;
+     actual: string; montoTotal: real; dato:gasto;
+ Begin
+  Enuevo:= nil; ult:=nil;
+  minimo (v,min);
+  while (min.nombre <> 'ZZZ') do
+    begin
+     actual:= min.nombre; montoTotal:=0;
+     while ((min.nombre <> 'ZZZ') and (min.nombre = actual) )do 
+     begin
+        montoTotal:= montoTotal + min.monto;
+        minimo (v, min);
+     end;
+     dato.nombre:= actual; dato.monto:= montoTotal;
+     agregarAtras(Enuevo,ult,dato);
+    end;
+End;  

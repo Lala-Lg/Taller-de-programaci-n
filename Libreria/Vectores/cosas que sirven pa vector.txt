@@ -1,0 +1,44 @@
+procedure agregarEnVector(Var v:vector; var diml:integer; var pude: boolean; dato:tipo);
+begin
+          pude:=false;
+
+         if(diml+1 <= dimf) then begin 
+              pude:= true;
+              diml := diml+1;
+              v[dimL]:= dato;
+         end;
+end;
+
+procedure borrar (var v:vector; var diml: integer; pos:integer; var pude:boolean);
+begin
+ pude:= false;
+ if pos >= 1 and pos <= diml then begin
+  for i:=pos to diml-1 do 
+   v[i]:= v[i+1];
+ pude:=true;
+ diml:= diml-1;
+end;
+end;
+
+procedure buscar (v:vector; diml:integer; dato:tipo) : boolean;
+var pos:integer; esta:boolean;
+begin
+  esta:=false;
+  pos:=1;
+  while(pos<= diml and not esta)  do begin
+    if v[pos] = dato then esta:=true
+    else pos:=pos+1;
+end
+buscar:=esta;
+end;
+
+procedure insertar (var v:vector; var diml:integer;dato:tipo; pos:integer;var pude:boolean);
+var i:integer;
+begin
+  pude:=false;
+  if diml+1 down to pos do v[i+1] := v[i];
+  pude:=true;
+  v[pos]:= dato;
+  diml:=diml+1;
+end;
+end;

@@ -1,0 +1,23 @@
+procedure equivaleteBinario (decimal:integer);
+begin
+  
+   if (decimal <> 0) then begin
+     equivaleteBinario(decimal div 2);
+     write(decimal mod 2);
+   end;          
+    
+end;
+
+PP 
+readln(num);
+ 
+ while (num <>0) do begin
+ 
+  writeln('El numero binario es: ');
+ 
+  equivaleteBinario(num);
+  
+  writeln('Ingrese numero para saber su equivalente binario');
+  
+  readln(num);
+ end;

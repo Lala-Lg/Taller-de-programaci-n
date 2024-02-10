@@ -1,0 +1,27 @@
+procedure Eliminar(var Vector:vector_ventas; var diml:integer; num1:integer; num2:integer);
+var 
+	pos_ini:integer;
+	cant:integer;
+	i:integer;
+begin
+	i:=1;
+	
+	{--------Obtenemos las posiciones--------}
+	while((diml<dimf) and (Vector[i].codproducto< num1)) do 
+		i:=i+1;
+	{A partir del num1}
+	pos_ini:=i;
+		
+	
+	while((diml<dimf) and (Vector[i].codproducto<= num2)) do 
+		i:=i+1;
+	{Contando el num2}
+	cant:=i-pos_ini;
+		
+		
+	{--------Corrimiento--------}
+	for i:=(pos_ini+cant) to diml do 
+		Vector[i-cant]:=Vector[i];
+	diml:=diml-cant;
+	
+end;

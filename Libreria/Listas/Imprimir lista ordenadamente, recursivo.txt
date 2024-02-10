@@ -1,0 +1,7 @@
+procedure imprimirListaMismoOrden (l: lista);
+begin
+	if (l<> nil) then begin
+		write (' ', l^.dato, '|');
+		ImprimirListaMismoOrden (l^.sig);
+	end;
+end;

@@ -1,0 +1,13 @@
+procedure generarVector(var v: vector; var dimL: integer);
+	procedure cargar(var v: vector; var dimL: integer);
+	begin
+		if (dimL<dimF) then begin
+			dimL:=dimL+1;
+			v[dimL]:=random(N);
+			cargar(v,dimL);
+		end;
+	end;
+begin
+	dimL:=0;
+	cargar(v,dimL);
+end;

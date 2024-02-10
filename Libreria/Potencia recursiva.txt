@@ -1,0 +1,14 @@
+Potencia recursiva
+
+Function potencia (x,n:integer):real;
+begin
+  
+  if (n = 0) then potencia:=1
+  
+  else potencia:= x * potencia(x,n-1);
+
+end;
+
+Porque por ej.
+
+2^3 = 2*(2^2) = 2*(2*2^1)

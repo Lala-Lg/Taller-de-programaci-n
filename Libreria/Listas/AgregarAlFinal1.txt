@@ -1,0 +1,12 @@
+Ordenadamente
+
+Procedure AgregarAlFinal1(var l,ult:lista; p:pelicula);
+var aux:lista;
+begin
+	New(aux);
+	nue^.dato:=P;
+	nue^.sig:=nil;
+	if L=nil then l:=aux
+	else ult^.sig:=aux;
+	ult:=aux;
+end;    

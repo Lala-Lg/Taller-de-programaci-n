@@ -1,0 +1,28 @@
+Algoritmo de ordenacion
+
+For i:=2 to n do begin
+  actual := v[i];
+  j:=i-1;
+  while(j>0 AND v[j]>actual)
+    v[j+1]:=v[j]
+    j:=j-1;
+  end;
+v[j+1]:=actual;
+end
+end.
+
+procedure OrdenarMenorAMayor (var v: arreglo; dimL: integer);
+var
+  i, j, aux: integer;
+
+begin
+  for i := 2 to dimL do begin
+    aux := v[i];
+    j := i-1;
+    while ( j > 0 ) and ( v[j] > aux) do begin
+      v[j + 1] := v[j];
+      j := j - 1;
+    end;
+    v[j + 1] := aux;
+  end;
+end;

@@ -1,0 +1,9 @@
+
+function maximoV(v: vector; dimL: integer): integer;
+begin
+	if (dimL>1) then begin
+		maximoV:=maximoV(v,dimL-1);
+		if (v[dimL]>maximoV) then maximoV:=v[dimL];
+	end
+	else maximoV:=v[dimL];
+end;

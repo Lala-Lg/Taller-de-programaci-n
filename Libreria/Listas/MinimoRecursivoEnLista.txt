@@ -1,0 +1,13 @@
+//Minimo recursivo en una lista
+function minimoRecursivo(l:lista;minimo:integer):integer;
+begin
+
+ //El caso base es si la lista termina, teniendo el minimo de la lista.
+
+ if (l = nil) then minimoRecursivo:= minimo
+ //Si encontré el minimo entonces es l^.dato sin embargo tengo que terminar la lista.
+ else if (minimo > l^.dato) then minimoRecursivo:= minimoRecursivo(l^.sig,l^.dato)
+ //Si no encontré el minimo, entonces sigo buscando.
+      else minimoRecursivo:=minimoRecursivo(l^.sig,minimo);
+
+end;

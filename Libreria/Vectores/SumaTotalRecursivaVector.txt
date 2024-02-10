@@ -1,0 +1,9 @@
+
+function suma(v: vector; dimL: integer): integer;
+begin
+	if (dimL>1) then begin
+		suma:=suma(v,dimL-1);
+		suma:=suma+v[dimL];
+	end
+	else suma:=v[dimL];
+end;

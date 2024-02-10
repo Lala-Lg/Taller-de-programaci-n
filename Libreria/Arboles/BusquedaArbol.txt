@@ -1,0 +1,8 @@
+Function EncontrarX(a:arbol;x:Cadena):boolean;
+begin
+ If(a=nil) then EncontrarNombre:=false
+ else begin If(x=a^.dato) then EncontrarNombre:=True
+            else If(x<a^.dato) then EncontrarNombre:=EncontrarNombre(a^.HI,x)
+            else EncontrarNombre:=EncontrarNombre(a^.HD,x);
+      end;
+end;

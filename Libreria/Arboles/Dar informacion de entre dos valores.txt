@@ -1,0 +1,8 @@
+procedure rango(a:arbol);
+begin
+  if(a <> nil) then begin
+    if (6982>a^.dato.legajo) and (a^.dato.legajo>2803) then writeln(a^.dato.apnombre,' tiene legajo entre el rango 2803 y 6982');
+    if (6982>a^.dato.legajo) then  rango(a^.HI);
+    if (a^.dato.legajo>2803) then rango(a^.HD);
+  end;
+end;

@@ -1,0 +1,29 @@
+function verMin(a:arbol;min:integer):integer;
+
+begin
+
+   if (a = nil) then  //Caso base
+   
+     verMin:=min
+    
+   else  if (min > a^.dato) then 
+   
+         verMin:=verMin(a^.HI,a^.dato);
+
+
+end;
+
+function verMax(a:arbol;max:integer):integer;
+
+begin
+
+   if (a = nil) then  //Caso base
+   
+     verMax:=max
+    
+   else  if (max < a^.dato) then 
+   
+         verMax:=verMax(a^.HD,a^.dato);
+
+
+end;

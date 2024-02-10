@@ -1,0 +1,11 @@
+function cantElementos (a:arbol):integer;
+begin
+ if (a = nil) then cantElementos:=0
+ else  cantElementos:=1+cantElementos(a^.HI)+cantElementos(a^.HD);
+end;
+
+function sumaTotal (a:arbol):integer;
+begin
+  if(a = nil) then sumaTotal:=0
+  else sumaTotal:=a^.dato.edad+sumaTotal(a^.HI)+sumaTotal(a^.HD);
+end;

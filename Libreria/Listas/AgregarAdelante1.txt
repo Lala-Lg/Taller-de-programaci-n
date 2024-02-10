@@ -1,0 +1,15 @@
+Desordenadamente
+
+Procedure AgregarAdelante1 (var p:lista;t:tipo);
+var aux:lista;
+begin
+  
+ new(aux);
+ aux^.dato:=t;
+ aux^.sig:=nil;
+ if( p=nil ) then p:=aux;
+ else begin
+      aux^.sig:=p;
+      p:=aux;
+      end;
+end;

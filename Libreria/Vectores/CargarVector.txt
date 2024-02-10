@@ -1,0 +1,18 @@
+
+Procedure cargarVector(var v:vector_oficinas; var diml:integer);
+var o:oficina;
+begin
+ 
+ diml:=0;
+ 
+ leerOficina(o);
+ 
+ while (( diml<dimf ) and (o.cod_id <>-1))do begin
+  
+  diml:=diml+1;
+  
+  v[diml]:= o;
+  
+  leerOficina(o);
+  
+ end;

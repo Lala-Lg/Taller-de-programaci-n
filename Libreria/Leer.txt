@@ -1,0 +1,13 @@
+Procedure leerOficina(var o:oficina);
+begin
+
+ writeln('Ingrese codigo de identidad');
+ readln(o.cod_id);
+ if (o.cod_id <> -1) then begin
+ writeln('Ingrese dni');
+ readln(o.dni);
+ writeln('Ingrese valor de la expensa');
+ readln(o.expensa);
+ end;
+
+end;

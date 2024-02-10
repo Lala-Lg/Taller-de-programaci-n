@@ -1,0 +1,43 @@
+Procedure Minimo(var sucursales:vSuc; var cli:cliente; var cantMinutos:integer);
+var
+	i:integer;
+	pos:integer;
+begin
+	pos:=-1;
+	cli.codC:=9999;
+	for i:=1 to DIMF do begin
+		if(sucursales[i]<>nil)then begin
+			if (sucursales[i]^.dato.codC <= cli.codC) then begin
+				pos:=i;
+				cli:=sucursales[i]^.dato;
+			end;
+		end;
+	end;
+	if(pos<>-1)then begin
+		cantMinutos:=1;
+		sucursales[pos]:=sucursales[pos]^.sig;
+	end;
+end;
+
+Procedure Merge(sucursales:vSuc; var l:lnueva);
+var
+	actual,cli:cliente;
+	cantMinutosTot,cantMinutos:integer;
+	cliTot:clienteArbol;
+begin 
+		l:=nil;
+		Minimo(sucursales,cli,cantMinutos);
+		while(cli.codC <> 9999) do begin
+			actual:=cli;
+			cantMinutosTot:=0;
+			
+			while((cli.codC <> 9999) and (cli.codC=actual.codC))do begin
+				cantMinutosTot:=cantMinutosTot+cli.minAsis;
+				Minimo(sucursales,cli,cantMinutos);
+			end;
+			
+			cliTot.minutosTotales:= cantMinutosTot;
+			cliTot.dni:=actual.dniC;
+			AgregarAdelante(l,cliTot);
+		end;
+end;

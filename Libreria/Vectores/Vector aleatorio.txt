@@ -1,0 +1,19 @@
+procedure cargarVector(var v:vector; var dimL:integer);  
+begin
+ 
+ dimL:=0;
+ 
+ while(dimL<dimF) and (numRandom() <> 0) do begin
+   dimL:=dimL+1;
+   v[dimL] := numRandom();
+   end;
+end;
+
+procedure imprimirVector(v:vector;dimL:integer);
+var i:integer;
+begin
+
+ for i:=1 to dimL do 
+  writeln('El elemento: ', i, ' es: ', v[i]);
+
+end;

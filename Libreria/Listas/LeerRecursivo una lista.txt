@@ -1,0 +1,15 @@
+Procedure ImprimirRecursivo (l:lista);
+
+begin
+
+  if (l <> nil) then //Caso base implícito
+  
+    begin
+    
+     write (l^.dato); write(' ');
+     
+     ImprimirRecursivo (l^.sig);
+     
+    end;
+    
+ end;

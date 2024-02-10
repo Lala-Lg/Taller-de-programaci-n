@@ -1,0 +1,8 @@
+function esta(l:lista; x: integer): boolean;
+begin
+	if ((l<>nil) and (l^.dato<>x)) then begin
+		esta:=esta(l^.sig,x);
+	end
+	else if ((l<>nil) and (l^.dato=x)) then esta:=	true
+	else esta:= false;
+end;

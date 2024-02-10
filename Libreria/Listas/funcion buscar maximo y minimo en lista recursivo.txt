@@ -1,0 +1,9 @@
+function maximo(l: lista): integer;
+var maxi:integer
+begin
+	if (l^.sig<>nil) then begin
+		maxi:=maximo(l^.sig);
+		if (l^.dato>maxi)) then maximo:=l^.dato; else maximo:=maxi;
+	end
+	else maximo:=l^.dato;
+end;

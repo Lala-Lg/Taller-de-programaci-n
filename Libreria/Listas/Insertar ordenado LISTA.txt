@@ -1,0 +1,25 @@
+Procedure InsertarOrdenado (Var L:Lista;r:registro);
+Var aux:Lista;ant:Lista;act:Lista;
+Begin
+   new(aux);
+   aux^.dato:=E;
+   act:=L;
+   ant:=L;
+   While (act<>nil) and (act^.dato.x<r.x) do begin
+    ant:=act;
+    act:=act^.sig;
+    end;
+   If (act=L) then L:=aux
+   else ant^.sig:=aux;
+   aux^.sig:=act;
+ end;
+
+Procedure CrearLista(Var L:Lista);
+Var r:registro;
+Begin 
+ Leerregistro(r);
+ While(r.corte<>n) do begin
+  InsertarOrdenado(L,r);
+  Leerregistro(r);
+  end;
+end;

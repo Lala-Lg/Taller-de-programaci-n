@@ -1,0 +1,11 @@
+Procedure imprimirArbol(a:arbol);
+begin
+ if(a<>nil) then begin
+  write('Numero de socio: ',a^.dato.numSocio,'|');
+  write('Nombre: ',a^.dato.nombre,'|');
+  write('Edad: ',a^.dato.edad,'|');
+  writeln('');
+  ImprimirArbol(a^.HI);
+  ImprimirArbol(a^.HD);
+  end;
+end;

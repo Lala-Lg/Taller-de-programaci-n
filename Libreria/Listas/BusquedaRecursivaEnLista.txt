@@ -1,0 +1,10 @@
+function buscarRecursivo(l:lista;num:integer):boolean;
+begin
+
+  if(l = nil) then buscarRecursivo:=false
+  
+  else if (num = l^.dato) then buscarRecursivo:= true
+       
+       else buscarRecursivo:= buscarRecursivo(l^.sig,num);
+
+end;

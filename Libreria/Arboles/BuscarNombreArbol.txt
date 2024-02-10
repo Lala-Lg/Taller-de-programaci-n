@@ -1,0 +1,25 @@
+function buscarNombre(a:arbol;nombre:str):boolean;
+begin
+ 
+ if (a = nil) then buscarNombre:= false
+ else begin if (nombre = a^.dato) then buscarNombre:= true
+      else begin 
+           if (nombre < a^.dato) then buscarNombre:=buscarNombre(a^.HI,nombre)
+           else buscarNombre:=buscarNombre(a^.HD,nombre);
+           end;
+      end;
+      
+end;
+
+no esta ordenado por criterio 
+
+function buscarNombre(a:arbol;nombre:string):boolean;
+begin
+ 
+ if (a = nil) then buscarNombre:= false
+ else if (nombre <> a^.dato.nombre) then begin
+           buscarNombre:=buscarNombre(a^.HI,nombre);
+           buscarNombre:=buscarNombre(a^.HD,nombre);
+      end
+      else buscarNombre:=true;
+ end;

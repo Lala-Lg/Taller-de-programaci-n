@@ -1,0 +1,8 @@
+Procedure OrdenDecreciente (a:arbol); //Falta lo de pares
+  begin
+   If ( a<> nil ) then begin
+    OrdenDecreciente (a^.HD);
+    If (a^.dato div 2 = 0) then write (a^.dato, ' ');
+    OrdenDecreciente (a^.HI);
+   end;
+end;
